@@ -28,12 +28,12 @@ object CNAirScraper extends App {
     cityTable.toString
   }
 
-  def saveOneCityTable(inputTable: String) = {
-    val pw = new PrintWriter(new FileWriter(("data.txt"), true))
+  def saveOneCityTable(inputTable: String): Unit = {
+    val pw = new PrintWriter(new FileWriter("data.txt", true))
 
     val oneCityTable = Jsoup.parse(inputTable)
 
-    for (ln <- oneCityTable.select("th").asScala) (pw.write(ln.text + "|"))
+    for (ln <- oneCityTable.select("th").asScala) pw.write(ln.text + "|")
 
     for (ln <- oneCityTable.select("tr").asScala) {
       for (e <- ln.select("td").asScala) {
