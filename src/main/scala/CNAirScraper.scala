@@ -41,7 +41,6 @@ object CNAirScraper extends App {
       }
       pw.write("\n")
     }
-
     pw.close()
   }
 }
