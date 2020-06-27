@@ -7,15 +7,10 @@ object CNAirScraper extends App {
   val html = Jsoup.connect("http://pm25.in/").get()
   val cities = html.select(".unstyled > div > li > a").asScala
 
-  var cnt: Int = 1
   for (city <- cities) {
-    if (cnt <= 3) {
       saveOneCityTable(
         getOneCityData("http://pm25.in" + city.attr("href"))
       )
-      cnt = cnt + 1
-      print("cnt = " + cnt + "\n")
-    }
   }
 
   def getOneCityData(inputURL: String): String = {
